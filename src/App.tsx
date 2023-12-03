@@ -6,49 +6,62 @@ import {
 } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ScreenA from './Components/Screen/ScreenA';
 import ScreenB from './Components/Screen/ScreenB';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const Stack = createNativeStackNavigator();
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+// const Tab = createBottomTabNavigator();
+// const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
+
 
 const App = () => {
   // const [name, setName] = useState('');
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
-          name='screenA' 
-          options={{ 
-            // header: () => <View className='flex w-full h-[70px] items-start justify-center'><Text className='text-white'>Go back</Text></View>,
-            title: 'Screen A', 
-            headerStyle: {
-              backgroundColor: '#000',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }} 
-          component={ScreenA} 
+      <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({ focused, size, color}) => {
+            let iconName: string = "";
+            if (route.name === 'screenA') {
+              iconName = 'autoprefixer';
+              size = focused ? 25 : 20;
+              color = focused ? "#f0f" : "#555"
+            } else if (route.name === 'screenB') {
+              iconName = 'btc';
+              size = focused ? 25 : 20;
+              color = focused ? "#f0f" : "#555"
+            }
+            return (
+              <FontAwesome5 name={iconName} size={size} color={color} />
+            )
+          }
+        })}
+        tabBarOptions={{
+          activeTintColor: "#f0f",
+          inactiveTintColor: "#555",
+          activeBackgroundColor: "yellow",
+          inactiveBackgroundColor: "#ffff9d",
+          showLable: true,
+          lableStyle: {fontSize: 14},
+        }}
+      >
+        <Tab.Screen
+          name="screenA"
+          component={ScreenA}
+          // options={{ tabBarBadge: 3}}
         />
-        <Stack.Screen 
-          name='screenB' 
-          options={{ 
-            title: 'Screen B',
-            headerStyle: {
-              backgroundColor: '#000',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-           
-          component={ScreenB} 
+        <Tab.Screen
+          name="screenB"
+          component={ScreenB}
+          // options={{ tabBarBadge: 5}}
         />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
