@@ -1,0 +1,3 @@
+Command:
+- start project: npm start
+- reset cache: npx react-native start --reset-cache
