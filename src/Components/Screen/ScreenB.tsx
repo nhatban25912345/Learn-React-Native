@@ -1,11 +1,11 @@
 import {Pressable, Text, View} from 'react-native';
 
-function ScreenA({navigation}: {navigation: any}) {
+function ScreenB({navigation, route}: {navigation: any, route: any}) {
   const handleGoBack = () => {
     navigation.goBack();
   };
   const handleGoToA = () => {
-    navigation.navigate('screenA');
+    navigation.navigate('screenA', {message: "Message from B"});
   };
 
   return (
@@ -29,8 +29,9 @@ function ScreenA({navigation}: {navigation: any}) {
           Back to A
         </Text>
       </Pressable>
+      <View className='flex flex-row mt-3'><Text>id: </Text><Text>{route?.params?.id}</Text></View>
     </View>
   );
 }
 
-export default ScreenA;
+export default ScreenB;

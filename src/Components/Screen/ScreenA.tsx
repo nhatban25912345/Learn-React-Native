@@ -1,8 +1,8 @@
 import {Pressable, Text, View} from 'react-native';
 
-function ScreenA({navigation}: {navigation: any}) {
+function ScreenA({navigation, route}: {navigation: any, route: any}) {
   const handleBackToB = () => {
-    navigation.navigate('screenB');
+    navigation.navigate('screenB', {id: 2, name: "Shinha", age: 22, content: "Item from screen A"});
   };
 
   const handleOpenDrawer = () => {
@@ -29,6 +29,7 @@ function ScreenA({navigation}: {navigation: any}) {
         <Text className="text-xl text-white bg-green-800 px-5 py-2 rounded">
           Toggle drawer
         </Text>
+        <View className='flex flex-row mt-3'><Text>Message: </Text><Text>{route?.params?.message}</Text></View>
       </Pressable>
     </View>
   );

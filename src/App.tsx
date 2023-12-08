@@ -54,6 +54,7 @@ function App() {
               />
             }
           }}
+          initialParams={{message: 'Default message'}}
         />
         <Drawer.Screen 
           name="screenB" 
@@ -69,6 +70,7 @@ function App() {
               />
             }
           }}
+          initialParams={{id: 1}}
         />
       </Drawer.Navigator>
     </NavigationContainer>
