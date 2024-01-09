@@ -1,4 +1,5 @@
 import {Pressable, Text, View} from 'react-native';
+import GlobalStyle from "../Utils/GlobalStyle"
 
 function ScreenB({navigation, route}: {navigation: any, route: any}) {
   const handleGoBack = () => {
@@ -10,7 +11,7 @@ function ScreenB({navigation, route}: {navigation: any, route: any}) {
 
   return (
     <View className="bg-gray-700 flex-1 items-center justify-center">
-      <Text className="font-semibold text-xl">Screen B</Text>
+      <Text className="font-semibold text-xl" style={GlobalStyle.CustomFont}>Screen B</Text>
       <Pressable
         className="mt-3"
         style={({pressed}) => [{backgroundColor: pressed ? 'green' : 'red'}]}
